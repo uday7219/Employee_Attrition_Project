@@ -178,16 +178,16 @@ Four classifiers were evaluated using the same preprocessing framework:
 ### Baseline Model Performance
 
   ------------------------------------------------------------------------------
-  Model             Accuracy    Precision       Recall           F1      ROC-AUC
+  Model:             Accuracy,    Precision,       Recall,           F1,      ROC-AUC
   ------------- ------------ ------------ ------------ ------------ ------------
   **XGBoost**     **82.01%**   **81.25%**   **75.73%**   **78.39%**   **90.16%**
 
-  Logistic            79.08%       77.32%       72.82%       75.00%       88.61%
-  Regression                                                        
+  **Logistic Regression**            **79.08%**       **77.32%**       **72.82%**       **75.00%**       **88.61%**
+                                                          
 
-  Random Forest       77.82%       73.58%       75.73%       74.64%       86.21%
+  **Random Forest       77.82%       73.58%       75.73%       74.64%       86.21%**
 
-  Decision Tree       75.31%       73.91%       66.02%       69.74%       77.76%
+  **Decision Tree       75.31%       73.91%       66.02%       69.74%       77.76%**
   ------------------------------------------------------------------------------
 
 **Best baseline:** XGBoost
@@ -279,10 +279,10 @@ are applied during inference.
 Employee-Attrition-Prediction/
 │
 ├── employee_attrition.xlsx
-├── employee_attrition_prediction(3).ipynb
-├── train_model(2).py
-├── app(1).py
-├── requirements(1).txt
+├── employee_attrition_prediction.ipynb
+├── train_model.py
+├── app.py
+├── requirements.txt
 │
 ├── models/
 │   └── employee_attrition_model.joblib
@@ -301,7 +301,7 @@ Employee-Attrition-Prediction/
 ### 1. Clone the repository
 
 ``` bash
-git clone <YOUR-GITHUB-REPOSITORY-URL>
+git clone <https://github.com/uday7219/Employee_Attrtion_Project>
 cd Employee-Attrition-Prediction
 ```
 
@@ -310,15 +310,15 @@ cd Employee-Attrition-Prediction
 #### Windows
 
 ``` bash
-python -m venv venv
-venv\Scripts\activate
+python -m venv .employe
+employee\Scripts\activate.bat
 ```
 
 #### macOS / Linux
 
 ``` bash
-python3 -m venv venv
-source venv/bin/activate
+python3 -m .employee venv
+source employee/bin/activate
 ```
 
 ### 3. Install dependencies
@@ -509,18 +509,18 @@ attrition cases rather than simply maximize overall correctness.
 
 ## 📌 Important Files
 
-### `employee_attrition_prediction(3).ipynb`
+### `employee_attrition_prediction.ipynb`
 
 Complete project notebook containing the end-to-end workflow, EDA, model
 comparison, tuning, evaluation, and final model selection.
 
-### `train_model(2).py`
+### `train_model.py`
 
 Training script that loads the Excel dataset, builds the preprocessing +
 XGBoost pipeline, performs GridSearchCV, evaluates the model, and saves
 the trained estimator.
 
-### `app(1).py`
+### `app.py`
 
 Streamlit application for interactive employee attrition prediction.
 
@@ -528,7 +528,7 @@ Streamlit application for interactive employee attrition prediction.
 
 User-provided employee attrition dataset used by the project.
 
-### `requirements(1).txt`
+### `requirements.txt`
 
 Python dependency list required to run the project.
 
@@ -612,11 +612,3 @@ This repository is intended for **educational, portfolio, and
 machine-learning demonstration purposes**. Model predictions are
 estimates based on the supplied dataset and should not be interpreted as
 definitive judgments about an individual employee.
-
-------------------------------------------------------------------------
-
-## ⭐ If You Found This Project Useful
-
-Consider giving the repository a ⭐ on GitHub and using the project as a
-foundation for further experimentation in **HR analytics,
-classification, explainable AI, and responsible machine learning**.
