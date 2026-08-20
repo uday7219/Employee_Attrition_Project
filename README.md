@@ -189,6 +189,7 @@ Four classifiers were evaluated using the same preprocessing framework:
   **Decision Tree**   **78.24%**   **77.42%**   **69.90%**   **73.47%**   **80.00%**
 
   **Random Forest**   **71.97%**   **63.85%**   **80.58%**   **71.24%**   **80.08%**
+  
 ------------------------------------------------------------------------------
 
 **Best baseline:** Tuned XGBoost
