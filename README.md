@@ -177,22 +177,21 @@ Four classifiers were evaluated using the same preprocessing framework:
 
 ### Baseline Model Performance
 
-  ------------------------------------------------------------------------------
+ ------------------------------------------------------------------------------
   Model:             Accuracy,    Precision,       Recall,           F1,      ROC-AUC
   ------------- ------------ ------------ ------------ ------------ ------------
-  **XGBoost**     **82.01%**   **81.25%**   **75.73%**   **78.39%**   **90.16%**
+  **Tuned XGBoost**   **82.85%**   **84.44%**   **73.79%**   **78.76%**   **89.33%**
 
-  **Logistic Regression**            **79.08%**       **77.32%**       **72.82%**       **75.00%**       **88.61%**
-                                                          
+  **XGBoost**         **80.33%**   **79.79%**   **72.82%**   **76.14%**   **88.80%**
 
-  **Random Forest       77.82%       73.58%       75.73%       74.64%       86.21%**
+  **Logistic Regression**   **79.50%**   **77.55%**   **73.79%**   **75.62%**   **87.95%**
 
-  **Decision Tree       75.31%       73.91%       66.02%       69.74%       77.76%**
-  ------------------------------------------------------------------------------
+  **Decision Tree**   **78.24%**   **77.42%**   **69.90%**   **73.47%**   **80.00%**
 
-**Best baseline:** XGBoost
+  **Random Forest**   **71.97%**   **63.85%**   **80.58%**   **71.24%**   **80.08%**
+------------------------------------------------------------------------------
 
-------------------------------------------------------------------------
+**Best baseline:** Tuned XGBoost
 
 ## 🚀 XGBoost Hyperparameter Tuning
 
@@ -201,29 +200,33 @@ The selected XGBoost pipeline was optimized using **GridSearchCV** with
 
 ### Search Space
 
--   `n_estimators`: 200, 300, 400
--   `learning_rate`: 0.05, 0.1
--   `max_depth`: 3, 5, 7
--   `min_child_weight`: 1, 2, 4
--   `subsample`: 0.8, 1.0
--   `colsample_bytree`: 0.8, 1.0
--   `gamma`: 0, 0.2
+-   `n_estimators`: 150, 200
+-   `learning_rate`: 0.03, 0.05
+-   `max_depth`: 2, 3, 4
+-   `min_child_weight`: 5, 8
+-   `subsample`: 0.7, 0.8
+-   `colsample_bytree`: 0.7, 0.8
+-   `gamma`: 0.2, 0.4
+-   `reg_alpha`: 0.1, 0.5
+-   `reg_lambda`: 2.0, 3.0
 
-This produced **432 parameter combinations × 5 folds = 2,160 fits**.
+This produced **768 parameter combinations × 5 folds = 3,840 fits**.
 
 ### Best Parameters
 
 ``` text
 colsample_bytree = 0.8
-gamma             = 0
+gamma             = 0.4
 learning_rate     = 0.05
-max_depth         = 3
-min_child_weight  = 2
-n_estimators      = 400
+max_depth         = 4
+min_child_weight  = 5
+n_estimators      = 200
+reg_alpha         = 0.1
+reg_lambda        = 2.0
 subsample         = 0.8
 ```
 
-**Best cross-validation F1:** `0.7876`
+**Best cross-validation F1:** `0.7757`
 
 ------------------------------------------------------------------------
 
@@ -233,21 +236,21 @@ The tuned XGBoost model was evaluated on the held-out test set.
 
   Metric          Score
   ----------- ---------
-  Accuracy      **83%**
-  Precision     **83%**
-  Recall        **77%**
-  F1-score      **80%**
-  ROC-AUC       **91%**
+  Accuracy      **80%**
+  Precision     **79%**
+  Recall        **72%**
+  F1-score      **76%**
+  ROC-AUC       **88%**
 
 ### Classification Performance
 
   Class            Precision   Recall   F1-score
   -------------- ----------- -------- ----------
-  No Attrition          0.83     0.88       0.86
-  Attrition             0.83     0.77       0.80
+  No Attrition          0.82     0.90       0.86
+  Attrition             0.84     0.74       0.79
 
 The tuned model improved the baseline XGBoost result from approximately
-**78.39% F1 / 90.16% ROC-AUC** to **80% F1 / 91% ROC-AUC** on the
+**76.14% F1 / 88.80% ROC-AUC** to **78.76% F1 / 89.33% ROC-AUC** on the
 recorded evaluation.
 
 ------------------------------------------------------------------------
@@ -594,12 +597,12 @@ Potential extensions include:
 ✔ 4 baseline models
 ✔ XGBoost selected as strongest baseline
 ✔ 5-fold cross-validation
-✔ 432 XGBoost parameter combinations
-✔ 2,160 total CV fits
+✔ 768 XGBoost parameter combinations
+✔ 3,840 total CV fits
 ✔ Tuned XGBoost
 ✔ 83% recorded test accuracy
-✔ 80% recorded test F1
-✔ 91% recorded test ROC-AUC
+✔ 79% recorded test F1
+✔ 89% recorded test ROC-AUC
 ✔ Joblib model persistence
 ✔ Interactive Streamlit application
 ```
